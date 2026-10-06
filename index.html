@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeOranjeSafe</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background: #f7f7f5;
+        color: #06458c;
+        font-family: Georgia, "Times New Roman", serif;
+    }
+
+    /* LANGUAGE */
+    .languages {
+        position: absolute;
+        top: 22px;
+        right: 28px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 17px;
+        z-index: 10;
+    }
+
+    .languages span {
+        cursor: pointer;
+        margin: 0 7px;
+        color: #06458c;
+    }
+
+    .languages span.active {
+        color: #f47721;
+        border-bottom: 2px solid #f47721;
+        padding-bottom: 2px;
+    }
+
+    /* HEADER */
+    header {
+        background: #ffffff;
+        text-align: center;
+        padding: 35px 20px 20px;
+        border-bottom: 3px solid #f47721;
+        position: relative;
+    }
+
+    .logo {
+        font-size: 68px;
+        font-weight: bold;
+        font-style: italic;
+        letter-spacing: -4px;
+        line-height: 1;
+        color: #06458c;
+        display: inline-block;
+    }
+
+    .logo .orange {
+        color: #f47721;
+    }
+
+    .logo-lines {
+        width: 555px;
+        max-width: 90%;
+        height: 3px;
+        background: #f47721;
+        margin: 12px auto 10px;
+    }
+
+    .crown {
+        color: #f47721;
+        font-size: 28px;
+        line-height: 20px;
+    }
+
+    .tagline {
+        margin-top: 7px;
+        font-size: 18px;
+        letter-spacing: 4px;
+        color: #06458c;
+        font-weight: bold;
+    }
+
+    /* HERO */
+    .hero {
+        height: 190px;
+        border-bottom: 3px solid #f47721;
+        position: relative;
+        overflow: hidden;
+
+        background:
+            linear-gradient(
+                to bottom,
+                #bfe2fa 0%,
+                #d9efff 55%,
+                #a9d6f5 100%
+            );
+    }
+
+    /* Simple Dutch flag */
+    .flag {
+        position: absolute;
+        left: 19%;
+        top: 27px;
+        width: 250px;
+        height: 150px;
+        box-shadow: 0 3px 7px rgba(0,0,0,0.25);
+        transform: rotate(-1deg);
+    }
+
+    .flag-red {
+        height: 33.33%;
+        background: #c8102e;
+    }
+
+    .flag-white {
+        height: 33.33%;
+        background: #ffffff;
+    }
+
+    .flag-blue {
+        height: 33.34%;
+        background: #174a8b;
+    }
+
+    .flag-pole {
+        position: absolute;
+        left: -9px;
+        top: -8px;
+        width: 8px;
+        height: 180px;
+        background: linear-gradient(to right, #555, #ddd, #555);
+    }
+
+    .hero-text {
+        position: absolute;
+        right: 18%;
+        top: 52px;
+        text-align: center;
+        font-size: 34px;
+        font-style: italic;
+        font-weight: bold;
+        line-height: 1.35;
+        color: #06458c;
+    }
+
+    /* MAIN */
+    .container {
+        width: 1100px;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .how {
+        display: grid;
+        grid-template-columns: 46% 54%;
+        gap: 25px;
+        padding: 42px 0 30px;
+    }
+
+    .intro {
+        padding-right: 30px;
+    }
+
+    h1 {
+        margin: 0 0 15px;
+        font-size: 34px;
+        color: #06458c;
+    }
+
+    h1::after {
+        content: "";
+        display: block;
+        width: 145px;
+        height: 3px;
+        background: #f47721;
+        margin-top: 8px;
+    }
+
+    .intro p {
+        font-size: 20px;
+        line-height: 1.65;
+        margin: 0;
+    }
+
+    .steps {
+        border-left: 2px solid #3774ae;
+        padding-left: 30px;
+    }
+
+    .step {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        min-height: 39px;
+        font-size: 18px;
+    }
+
+    .number {
+        flex: 0 0 40px;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background: #f47721;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 21px;
+        font-weight: bold;
+        margin-right: 15px;
+    }
+
+    /* FEATURES */
+    .features {
+        border-top: 1px solid #9dbbd7;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 20px 0 15px;
+    }
+
+    .feature {
+        display: flex;
+        align-items: center;
+        padding: 10px 25px;
+        border-right: 1px solid #9dbbd7;
+    }
+
+    .feature:last-child {
+        border-right: none;
+    }
+
+    .icon {
+        width: 62px;
+        min-width: 62px;
+        height: 62px;
+        border-radius: 50%;
+        background: #f47721;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 31px;
+        margin-right: 18px;
+        font-family: Arial, sans-serif;
+    }
+
+    .feature h2 {
+        margin: 0 0 5px;
+        font-size: 23px;
+    }
+
+    .feature p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.35;
+    }
+
+    /* CONTACT */
+    .contact {
+        text-align: center;
+        padding: 20px 0 28px;
+    }
+
+    .contact-title {
+        font-size: 25px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .email {
+        font-size: 18px;
+        color: #06458c;
+    }
+
+    /* FOOTER */
+    footer {
+        height: 55px;
+        background: #06458c;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 22px;
+        font-family: Arial, sans-serif;
+    }
+
+    .demo {
+        font-size: 10px;
+        opacity: 0.28;
+    }
+
+    .hoi {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 16px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+
+        .logo {
+            font-size: 47px;
+        }
+
+        .languages {
+            position: static;
+            margin-bottom: 15px;
+        }
+
+        header {
+            padding-top: 20px;
+        }
+
+        .tagline {
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        .hero {
+            height: 170px;
+        }
+
+        .flag {
+            left: 8%;
+            width: 170px;
+            height: 102px;
+            top: 35px;
+        }
+
+        .flag-pole {
+            height: 130px;
+        }
+
+        .hero-text {
+            right: 5%;
+            top: 48px;
+            font-size: 23px;
+        }
+
+        .how {
+            grid-template-columns: 1fr;
+        }
+
+        .intro {
+            padding-right: 0;
+        }
+
+        .steps {
+            border-left: none;
+            border-top: 1px solid #3774ae;
+            padding: 20px 0 0;
+        }
+
+        .features {
+            grid-template-columns: 1fr;
+        }
+
+        .feature {
+            border-right: none;
+            border-bottom: 1px solid #9dbbd7;
+            padding: 15px 5px;
+        }
+
+        .feature:last-child {
+            border-bottom: none;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="languages">
+        <span id="nl" class="active" onclick="setLanguage('nl')">NL</span> |
+        <span id="de" onclick="setLanguage('de')">DE</span> |
+        <span id="en" onclick="setLanguage('en')">EN</span>
+    </div>
+
+    <div class="logo">
+        De<span class="orange">Oranje</span>Safe
+    </div>
+
+    <div class="logo-lines"></div>
+
+    <div class="crown">♛</div>
+
+    <div class="tagline" id="tagline">
+        VEILIGE TRANSACTIES. VERTROUWEN BINDT.
+    </div>
+
+</header>
+
+
+<section class="hero">
+
+    <div class="flag">
+        <div class="flag-red"></div>
+        <div class="flag-white"></div>
+        <div class="flag-blue"></div>
+        <div class="flag-pole"></div>
+    </div>
+
+    <div class="hero-text" id="heroText">
+        Veilige betalingen.<br>
+        Voor iedereen.
+    </div>
+
+</section>
+
+
+<main class="container">
+
+    <section class="how">
+
+        <div class="intro">
+
+            <h1 id="howTitle">
+                Hoe werkt het?
+            </h1>
+
+            <p id="introText">
+                Bij DeOranjeSafe houden wij de betaling tijdelijk
+                op een veilige manier vast totdat zowel koper als
+                verkoper hun deel hebben voltooid. De koper betaalt
+                aan ons en wij bewaren het bedrag totdat het product
+                is geleverd en door de koper ontvangen. Daarna geven
+                wij het geld vrij aan de verkoper.
+            </p>
+
+        </div>
+
+
+        <div class="steps">
+
+            <div class="step">
+                <div class="number">1</div>
+                <div id="step1">
+                    Koper en verkoper nemen contact met elkaar op.
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="number">2</div>
+                <div id="step2">
+                    De koper maakt de betaling over aan DeOranjeSafe.
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="number">3</div>
+                <div id="step3">
+                    Wij bevestigen dat wij de betaling hebben ontvangen.
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="number">4</div>
+                <div id="step4">
+                    De verkoper verstuurt het product.
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="number">5</div>
+                <div id="step5">
+                    De koper controleert het product en bevestigt dit.
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="number">6</div>
+                <div id="step6">
+                    Wij geven de betaling vanuit een andere wallet vrij aan de verkoper.
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="features">
+
+        <div class="feature">
+
+            <div class="icon">♢</div>
+
+            <div>
+                <h2 id="securityTitle">Veilig</h2>
+                <p id="securityText">
+                    Uw transactie wordt beschermd en veilig bewaard
+                    totdat alles is voltooid.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="icon">↔</div>
+
+            <div>
+                <h2 id="reliabilityTitle">Betrouwbaar</h2>
+                <p id="reliabilityText">
+                    Wij zorgen ervoor dat koper en verkoper
+                    eerlijk worden behandeld.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="icon">%</div>
+
+            <div>
+                <h2 id="feesTitle">Kosten</h2>
+                <p id="feesText">
+                    Slechts 5% servicekosten per transactie.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="contact">
+
+        <div class="contact-title" id="contactTitle">
+            ✉ Contact
+        </div>
+
+        <div class="email">
+            de-oranje.safe@tutamail.com
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <span class="demo">demo</span>
+
+    <span class="hoi" id="footerText">
+        Hoi
+    </span>
+
+</footer>
+
+
+<script>
+
+const translations = {
+
+    nl: {
+        tagline: "VEILIGE TRANSACTIES. VERTROUWEN BINDT.",
+        hero: "Veilige betalingen.<br>Voor iedereen.",
+        how: "Hoe werkt het?",
+        intro: "Bij DeOranjeSafe houden wij de betaling tijdelijk op een veilige manier vast totdat zowel koper als verkoper hun deel hebben voltooid. De koper betaalt aan ons en wij bewaren het bedrag totdat het product is geleverd en door de koper ontvangen. Daarna geven wij het geld vrij aan de verkoper.",
+        steps: [
+            "Koper en verkoper nemen contact met elkaar op.",
+            "De koper maakt de betaling over aan DeOranjeSafe.",
+            "Wij bevestigen dat wij de betaling hebben ontvangen.",
+            "De verkoper verstuurt het product.",
+            "De koper controleert het product en bevestigt dit.",
+            "Wij geven de betaling vanuit een andere wallet vrij aan de verkoper."
+        ],
+        securityTitle: "Veilig",
+        securityText: "Uw transactie wordt beschermd en veilig bewaard totdat alles is voltooid.",
+        reliabilityTitle: "Betrouwbaar",
+        reliabilityText: "Wij zorgen ervoor dat koper en verkoper eerlijk worden behandeld.",
+        feesTitle: "Kosten",
+        feesText: "Slechts 5% servicekosten per transactie.",
+        contact: "✉ Contact",
+        footer: "Hoi"
+    },
+
+    de: {
+        tagline: "SICHERE TRANSAKTIONEN. VERTRAUEN VERBINDET.",
+        hero: "Sichere Zahlungen.<br>Für jeden.",
+        how: "Wie funktioniert es?",
+        intro: "Bei DeOranjeSafe halten wir die Zahlung vorübergehend sicher zurück, bis sowohl Käufer als auch Verkäufer ihren Teil erfüllt haben. Der Käufer zahlt an uns und wir bewahren den Betrag auf, bis das Produkt geliefert und vom Käufer erhalten wurde. Danach geben wir das Geld an den Verkäufer frei.",
+        steps: [
+            "Käufer und Verkäufer nehmen miteinander Kontakt auf.",
+            "Der Käufer überweist die Zahlung an DeOranjeSafe.",
+            "Wir bestätigen, dass wir die Zahlung erhalten haben.",
+            "Der Verkäufer verschickt das Produkt.",
+            "Der Käufer prüft das Produkt und bestätigt dies.",
+            "Wir geben die Zahlung von einer anderen Wallet an den Verkäufer frei."
+        ],
+        securityTitle: "Sicher",
+        securityText: "Ihre Transaktion wird geschützt und sicher aufbewahrt, bis alles abgeschlossen ist.",
+        reliabilityTitle: "Zuverlässig",
+        reliabilityText: "Wir sorgen dafür, dass Käufer und Verkäufer fair behandelt werden.",
+        feesTitle: "Kosten",
+        feesText: "Nur 5% Servicegebühr pro Transaktion.",
+        contact: "✉ Kontakt",
+        footer: "Hoi"
+    },
+
+    en: {
+        tagline: "SAFE TRANSACTIONS. TRUSTED.",
+        hero: "Secure payments.<br>For everyone.",
+        how: "How does it work?",
+        intro: "At DeOranjeSafe, we hold the payment temporarily in a secure way until both buyer and seller have fulfilled their part. The buyer makes the payment to us, and we keep it safe until the product has been delivered and received by the buyer. After that, we release the money to the seller.",
+        steps: [
+            "The buyer and seller get in touch with each other.",
+            "The buyer makes the payment to DeOranjeSafe.",
+            "We confirm that we have received the payment.",
+            "The seller ships the product.",
+            "The buyer checks the product and confirms it.",
+            "We release the payment to the seller from another wallet."
+        ],
+        securityTitle: "Security",
+        securityText: "Your transaction is protected and safely held until everything is completed.",
+        reliabilityTitle: "Reliability",
+        reliabilityText: "We ensure that both buyer and seller are treated fairly.",
+        feesTitle: "Fees",
+        feesText: "Only 5% service costs per transaction.",
+        contact: "✉ Contact",
+        footer: "Hoi"
+    }
+
+};
+
+
+function setLanguage(language) {
+
+    const t = translations[language];
+
+    document.documentElement.lang = language;
+
+    document.getElementById("tagline").innerHTML = t.tagline;
+    document.getElementById("heroText").innerHTML = t.hero;
+    document.getElementById("howTitle").innerHTML = t.how;
+    document.getElementById("introText").innerHTML = t.intro;
+
+    document.getElementById("step1").innerHTML = t.steps[0];
+    document.getElementById("step2").innerHTML = t.steps[1];
+    document.getElementById("step3").innerHTML = t.steps[2];
+    document.getElementById("step4").innerHTML = t.steps[3];
+    document.getElementById("step5").innerHTML = t.steps[4];
+    document.getElementById("step6").innerHTML = t.steps[5];
+
+    document.getElementById("securityTitle").innerHTML = t.securityTitle;
+    document.getElementById("securityText").innerHTML = t.securityText;
+
+    document.getElementById("reliabilityTitle").innerHTML = t.reliabilityTitle;
+    document.getElementById("reliabilityText").innerHTML = t.reliabilityText;
+
+    document.getElementById("feesTitle").innerHTML = t.feesTitle;
+    document.getElementById("feesText").innerHTML = t.feesText;
+
+    document.getElementById("contactTitle").innerHTML = t.contact;
+    document.getElementById("footerText").innerHTML = t.footer;
+
+    document.querySelectorAll(".languages span").forEach(span => {
+        span.classList.remove("active");
+    });
+
+    document.getElementById(language).classList.add("active");
+}
+
+</script>
+
+</body>
+</html>
